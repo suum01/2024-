@@ -190,7 +190,8 @@ while cap.isOpened():
                 cv2.line(image, points[start_idx], points[end_idx], (255, 255, 255),2)
     
         frame, _ = classifyPose(landmarks, image, display=False)
-        
+
+        # 통신
         scaled_keypoints = toledmatrix(keypoints)
         json_data = json.dumps(keypoints)
         sock.sendto(json_data.encode('utf-8'), (server_ip, server_port))
